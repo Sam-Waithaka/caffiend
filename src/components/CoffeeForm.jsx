@@ -6,6 +6,14 @@ export default function CoffeeForm(){
     const [selectedCoffee, setSelectedCoffee] = useState(null)
     const [showCoffeeTypes, setShowCoffeeTypes] = useState(false)
     const [coffeCost, setCoffeeCost] = useState(0)
+    const [hour, setHour] = useState(0)
+    const [min, setMin] = useState(0)
+
+    function handleSubmitForm(){
+        console.log(selectedCoffee, coffeCost, hour, min);
+        
+    }
+
 
     return (
         <>
@@ -75,7 +83,7 @@ export default function CoffeeForm(){
             <div className='time-entry'>
                 <div>
                     <h6>Hours</h6>
-                    <select name="" id="hours-select">
+                    <select onChange={(e)=>{setHour(e.target.value)}} name="" id="hours-select">
                         {[0, 1, 2, 3, 4, 5, 6, 
                             7, 8, 9, 10, 11, 12, 
                             13, 14, 15, 16, 17, 18, 
@@ -91,7 +99,7 @@ export default function CoffeeForm(){
 
                 <div>
                     <h6>Mins</h6>
-                    <select name="" id="mins-select">
+                    <select onChange={(e)=>{setMin(e.target.value)}} name="" id="mins-select">
                         {[0, 5, 10, 15, 30, 45].map((min, minIndex)=>{
                                 return (
                                     <option value={min} key={minIndex}>
@@ -103,7 +111,9 @@ export default function CoffeeForm(){
                 </div> 
             </div>
             
-            <button>Add Entry</button>
+            <button onClick={handleSubmitForm}>
+                Add Entry
+            </button>
         </>
     )
 }
