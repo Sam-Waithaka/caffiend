@@ -243,8 +243,14 @@ footer {
   padding: 2rem 0;
   display: flex;
   align-items: start;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 0.05rem;
   flex-wrap: wrap;
+  text-align: center
+}
+
+footer p + p {
+    margin-top: 1rem;
 }
 
 .sign-up-text {

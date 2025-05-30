@@ -17,6 +17,7 @@ export default function Layout(props){
     const footer = (
         <footer>
             <p><span className="text-gradient">Caffiend</span> was made by <a href="https://developersam-portfolio.netlify.app/">Sam Waithaka</a></p>
+            <p>Check out the project on <a target='_blank' href="https://github.com/Sam-Waithaka/caffiend.git">Github!</a></p>
         </footer>
     )
     return(
