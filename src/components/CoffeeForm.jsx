@@ -1,5 +1,12 @@
 import {coffeeOptions} from '../utils'
+import { useState } from 'react'
+
 export default function CoffeeForm(){
+
+    const [selectedCoffee, setSelectedCoffee] = useState(null)
+    const [showCoffeeTypes, setShowCoffeeTypes] = useState(false)
+    const [coffeCost, setCoffeeCost] = useState(0)
+
     return (
         <>
             <div className="section-header">
@@ -10,29 +17,58 @@ export default function CoffeeForm(){
             <div className="coffee-grid">
                 {coffeeOptions.slice(0, 5).map((option, optionIndex)=>{
                     return (
-                        <button className='button-card' key={optionIndex}>
+                        <button 
+                            onClick={()=>{
+                                setSelectedCoffee(option.name)
+                                setShowCoffeeTypes(false)
+                            }} 
+                            className={'button-card ' + (option.name === selectedCoffee ? 'coffee-button-selected ': '')} 
+                            key={optionIndex}
+                        >
                             <h4>{option.name}</h4>
                             <p>{option.caffeine} mg</p>
                         </button>
                     )
                 })}
-                <button className='button-card'>
+                <button 
+                    onClick={()=>{
+                        setShowCoffeeTypes(true)
+                        setSelectedCoffee()
+                    }}
+                    className={'button-card ' + (showCoffeeTypes ? 'coffee-button-selected ': '')}
+                >
                     <h4>Other</h4>
                     <p>n/a</p>
                 </button>
-                </div>
-            <select name="coffee-list" id="coffee-list">
-                <option value={null}>Select Type</option>
-                {coffeeOptions.map((option, optionIndex)=>{
-                    return (
-                        <option value={option.name} key={optionIndex}>
-                             {option.name} ({option.caffeine}mg)
-                        </option>
-                    )
-                    })}
-            </select>
+            </div>
+
+            { showCoffeeTypes && (
+                <select 
+                    name="coffee-list" id="coffee-list"
+                    onChange={(e)=>{
+                        setSelectedCoffee(e.target.value)
+                    }}
+                >
+                    <option value={null}>Select Type</option>
+                    {coffeeOptions.map((option, optionIndex)=>{
+                        return (
+                            <option value={option.name} key={optionIndex}>
+                                {option.name} ({option.caffeine}mg)
+                            </option>
+                        )
+                        })}
+                 </select>
+             )}
             <h4>Add the cost ($)</h4>
-            <input className='w-full' type="number" placeholder='4.5' />
+            <input 
+                className='w-full' 
+                type="number" 
+                placeholder='4.5'
+                value={coffeCost}
+                onChange={(e)=>{
+                    setCoffeeCost(e.target.value)
+                }}
+            />
             
             <h4>Time sisnce consumption</h4>
 

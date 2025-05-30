@@ -3,7 +3,7 @@ export default function Hero(){
         <>
             <h1>Coffee Tracking for Coffee <abbr title="An enthusiast or devotee">Fiends</abbr></h1>
             <div className="benefits-list">
-                <h3>Try <span text-gradient>Caffiend</span> and start ...</h3>
+                <h3>Try <span className='text-gradient'>Caffiend</span> and start ...</h3>
                 <p>✅ Tracking every coffee</p>
                 <p>✅ Measuring your blood caffeine levels</p>
                 <p>✅ Costing and quanitifying your addition</p>
