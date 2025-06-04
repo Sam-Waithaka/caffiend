@@ -22,12 +22,15 @@ export default function CoffeeForm(props){
         
     }
 
+    function handleCloseModal(){
+        setShowModal(false)
+    }
 
     return (
         <>
             {showModal && (
-                            <Modal handleCloseModal={()=>{setShowModal(false)}}>
-                                <Authentication handleCloseModal={()=>{setShowModal(false)}}/>
+                            <Modal handleCloseModal={handleCloseModal}>
+                                <Authentication handleCloseModal={handleCloseModal}/>
                             </Modal>
                         )
             }

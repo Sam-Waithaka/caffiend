@@ -37,11 +37,17 @@ export default function Layout(props){
             <p>Check out the project on <a target='_blank'  rel="noopener" href="https://github.com/Sam-Waithaka/caffiend.git">Github!</a></p>
         </footer>
     )
+
+
+    function handleCloseModal(){
+        setShowModal(false)
+    }
+
     return(
         <>
             {showModal && (
-                <Modal handleCloseModal={()=>{setShowModal(false)}}>
-                    <Authentication handleCloseModal={()=>{setShowModal(false)}}/>
+                <Modal handleCloseModal={handleCloseModal}>
+                    <Authentication handleCloseModal={handleCloseModal}/>
                 </Modal>
             )}
             {header}

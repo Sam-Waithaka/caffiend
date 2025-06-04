@@ -9,6 +9,7 @@ export default function Authentication(props){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isAuthenticating, setIsAuthenticating] = useState(false)
+    const [error, setError] = useState(null)
     
     const {signup, login} = useAuth()
 
@@ -18,6 +19,7 @@ export default function Authentication(props){
         }
         try {
             setIsAuthenticating(true)
+            setError(null)
 
             if (isRegistration){
                 await signup(email, password)
@@ -29,6 +31,7 @@ export default function Authentication(props){
 
         } catch (err){
             console.log(err.message);
+            setError(err)
             
         } finally {
             setIsAuthenticating(false)
@@ -39,6 +42,11 @@ export default function Authentication(props){
         <>
             <h2 className="sign-up-text">{ isRegistration ? 'Sign Up' : 'Login'}</h2>
             <p>{isRegistration ? 'Create an account': "Sign in to your account"}</p>
+
+            {error && (
+                <p>❌{error.message}</p>
+            )}
+
             <input value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" />
             <input value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="********" type="password" />
             <button onClick={handleAuthenticate} ><p>{ isAuthenticating ? 'Authenticating...' :'Submit'}</p></button>
