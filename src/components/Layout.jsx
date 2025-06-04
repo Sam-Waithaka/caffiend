@@ -1,6 +1,12 @@
+import { useState } from "react"
+
+import Modal from "./Modal"
+import Authentication from './Authentication'
+
 export default function Layout(props){
 
     const {children} = props
+    const [showModal, setShowModal] = useState(false)
 
     const header = (
         <header>
@@ -8,7 +14,7 @@ export default function Layout(props){
                 <h1 className="text-gradient">CAFFIEND </h1>
                 <p>for coffee instatiates</p>
             </div>
-            <button>
+            <button onClick={()=>{setShowModal(true)}}>
                 <p>Sign up free</p>
                 <i className="fa-solid fa-mug-hot"></i>
             </button>
@@ -17,11 +23,16 @@ export default function Layout(props){
     const footer = (
         <footer>
             <p><span className="text-gradient">Caffiend</span> was made by <a href="https://developersam-portfolio.netlify.app/">Sam Waithaka</a></p>
-            <p>Check out the project on <a target='_blank' href="https://github.com/Sam-Waithaka/caffiend.git">Github!</a></p>
+            <p>Check out the project on <a target='_blank'  rel="noopener" href="https://github.com/Sam-Waithaka/caffiend.git">Github!</a></p>
         </footer>
     )
     return(
         <>
+            {showModal && (
+                <Modal handleCloseModal={()=>{setShowModal(false)}}>
+                    <Authentication />
+                </Modal>
+            )}
             {header}
             <main>
                 {children}
