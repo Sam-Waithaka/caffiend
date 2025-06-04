@@ -39,6 +39,7 @@ export function AuthProvider(props){
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, async (user)=>{
             console.log('Current User: ', user);
+            setGlobalUser(user)
             
             if(!user){
                 console.log('No active user found');
@@ -60,7 +61,7 @@ export function AuthProvider(props){
                 setGlobalData(firebaseData)
 
             } catch (err){
-                console.log(err.message)
+               console.error('Auth error:', err);
             } finally {
                 setIsLoading(false)
             }
