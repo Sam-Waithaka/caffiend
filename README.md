@@ -2,8 +2,6 @@
 
 A sleek and intuitive coffee consumption tracking application that helps you monitor your caffeine intake, track costs, and understand your coffee drinking habits.
 
-![Caffiend Banner](public/coffee-mug.svg)
-
 ## Live Demo 🚀
 
 Check out the live version of Caffiend at: [https://sw-caffiend.netlify.app/](https://sw-caffiend.netlify.app/)
