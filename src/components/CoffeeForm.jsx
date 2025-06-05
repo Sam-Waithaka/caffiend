@@ -28,29 +28,41 @@ export default function CoffeeForm(props){
             return
         }
 
-        const newGlobalData = {
-            ...(globalData || {})
-        }
+        try { 
+            const newGlobalData = {
+                ...(globalData || {})
+            }
 
-        const nowTime = Date.now()
+            const nowTime = Date.now()
 
-        const timeToSubstract = (hour * 60 * 60 *1000) + (min * 60 * 60 * 100)
+            const timeToSubstract = (hour * 60 * 60 *1000) + (min * 60 * 60 * 100)
 
-        const timeStamp = nowTime - timeToSubstract
-        const newData = {
-            name: selectedCoffee,
-            cost: coffeCost
-        }
+            const timeStamp = nowTime - timeToSubstract
+            const newData = {
+                name: selectedCoffee,
+                cost: coffeCost
+            }
 
-        newGlobalData[timeStamp] = newData
-        console.log(timeStamp, selectedCoffee, coffeCost, hour, min);
+            newGlobalData[timeStamp] = newData
+            console.log(timeStamp, selectedCoffee, coffeCost, hour, min);
 
-        setGlobalData(newGlobalData)
+            setGlobalData(newGlobalData)
 
-        const userRef = doc(db, 'users', globalUser.uid)
-        const response = await setDoc(userRef, {
-            [timeStamp]:newData
-        }, {merge: true})
+            const userRef = doc(db, 'users', globalUser.uid)
+            const res = await setDoc(userRef, {
+                [timeStamp]:newData
+            }, {merge: true})
+
+            setSelectedCoffee(null)
+            setHour(0)
+            setMin(0)
+            setCoffeeCost(0)
+
+        } catch (error) {
+            console.log(error.message);
+            
+        } 
+
        
         
     }
